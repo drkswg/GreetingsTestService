@@ -10,6 +10,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                 echo "Building executable jar..."
+                chmod +x ./gradlew
                 ./gradlew build --no-daemon
                 '''
             }
