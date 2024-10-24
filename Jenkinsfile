@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
                 sh '''
                 echo "Building executable jar..."
                 chmod +x ./gradlew
@@ -15,18 +14,27 @@ pipeline {
                 '''
             }
         }
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                echo "Testing..."
+                echo "Building docker image..."
+                sh '''
+                docker build --no-cache -t greetings_test_service .
+                '''
             }
         }
         stage('Deliver') {
             steps {
                 echo 'Starting app....'
                 sh '''
-                ./gradlew run
+                docker run -d -p 8081:8081 greetings_test_service
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
