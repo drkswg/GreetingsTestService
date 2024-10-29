@@ -6,11 +6,6 @@ pipeline {
     }
     stages {
         stage('Test') {
-            agent {
-                docker {
-                    image 'hello-world'
-                }
-            }
             steps {
                 echo "echo test 123"
             }
