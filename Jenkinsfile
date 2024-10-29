@@ -8,7 +8,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'maven:3.5.0'
+                    image 'hello-world'
                 }
             }
             steps {
