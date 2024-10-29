@@ -2,18 +2,12 @@ pipeline {
     agent { 
         node {
             label 'docker-agent-alpine'
-            }
-      }
+        }
+    }
+    environment {
+              DOCKER_HOST = 'tcp://localhost:2375'
+    }
     stages {
-//         stage('Build') {
-//             steps {
-//                 sh '''
-//                 echo "Building executable jar..."
-//                 chmod +x ./gradlew
-//                 ./gradlew build --no-daemon
-//                 '''
-//             }
-//         }
         stage('Build Docker Image') {
             steps {
                 echo "Building docker image..."
