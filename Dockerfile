@@ -4,7 +4,6 @@ WORKDIR /greetings_test_service
 
 COPY gradlew .
 COPY gradle gradle
-
 COPY build.gradle.kts .
 COPY settings.gradle.kts .
 COPY gradle.properties .
